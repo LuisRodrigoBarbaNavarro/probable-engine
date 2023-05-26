@@ -57,4 +57,31 @@ python app.py
 ¡Listo! La primera parte de la guía de instalación está completada.
 *Nota: Asegúrate de contar con los permisos necesarios en tu sistema para ejecutar aplicaciones y modificar archivos.*
 
-### 🤖 - Configuración del Microcontrolador ESP8266
+### 🤖 - Configuración del Cliente Socket en Arduino
+
+Para establecer la comunicación entre el microcontrolador y el servidor, es necesario cargar el archivo "SocketClient.ino" en tu microcontrolador utilizando el Arduino IDE. Sigue los pasos a continuación:
+
+1. Descarga e instala el Arduino IDE desde el siguiente [enlace de descarga](https://www.arduino.cc/en/software).
+2. Abre el Arduino IDE y crea un nuevo proyecto.
+3. Copia y pega el contenido del archivo "SocketClient.ino" en el proyecto en el Arduino IDE.
+
+Dentro del archivo "SocketClient.ino", encontrarás las siguientes variables de conexión:
+```cpp
+const uint16_t port = 8585;
+const char *host = "192.168.1.70";
+const String ussid = "Rodrigo's Phone";
+const String password = "bf9292jfi9q1";
+```
+Modifica estas variables de acuerdo a tu configuración de red. Reemplaza el valor de `host` con la dirección IP del servidor donde se ejecuta la aplicación Flask. Asimismo, actualiza los valores de `ussid` y `password` con los datos de tu red Wi-Fi.
+
+Conecta tu microcontrolador al ordenador y selecciona el puerto correcto en el Arduino IDE. Luego, haz clic en el botón de carga (upload) para cargar el programa en el microcontrolador.
+
+Una vez cargado con éxito, el microcontrolador estará listo para enviar y recibir datos del servidor Flask.
+
+¡Enhorabuena! Has completado la configuración del cliente socket en Arduino. Ahora podrás intercambiar datos con la aplicación web en Flask y controlar la luminiscencia en tu invernadero de manera efectiva.
+
+Recuerda que si necesitas realizar ajustes adicionales, puedes modificar los archivos correspondientes según tus requerimientos específicos.
+
+*Nota: Asegúrate de tener los controladores necesarios instalados para tu microcontrolador y que esté correctamente conectado al ordenador.*
+
+```Made with love by Shinia```

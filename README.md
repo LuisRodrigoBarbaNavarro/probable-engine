@@ -56,3 +56,5 @@ python app.py
 ```
 ¡Listo! La primera parte de la guía de instalación está completada.
 *Nota: Asegúrate de contar con los permisos necesarios en tu sistema para ejecutar aplicaciones y modificar archivos.*
+
+### 🤖 - Configuración del Microcontrolador ESP8266

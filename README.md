@@ -15,6 +15,8 @@ Con este repositorio, podrás construir y personalizar tu propio sistema de cont
 
 # 📚 - Guía de Instalación
 
+### 🐍 - Instalación de Entorno Virtual de Flask
+
 Antes de comenzar la instalación, asegúrate de cumplir con los siguientes requisitos:
 - Tener la versión más reciente de Python instalada en tu sistema.
 - Tanto el servidor como el microcontrolador deben estar conectados a la misma red para establecer la conexión cliente-servidor.

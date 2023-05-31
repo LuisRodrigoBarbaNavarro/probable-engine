@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+
+    <script src="https://kit.fontawesome.com/8562bd2fa0.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.1.3/socket.io.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../static/app.js"></script>
+
+    <title>Test</title>
+
+</head>
+
+<body>
+    <div class="row">
+        <div class="col-1">
+            <div class="container-neo" style="height: 93vh;">
+                <div class="row">
+                    <div class="col">
+                        <div class="container-neo" style="height: 65vh;">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <div class="container-neo"></div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col">
+                        <div class="container-neo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-11">
+            <div class="container-neo" style="height: 93vh;">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="container-neo" style="height: 41vh;">
+                            <h3>Luminous Intensity</h3>
+                            <hr color="white">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex justify-content-center text-center">
+                                        <h3 style="padding-top: 25%; padding-left: 15%;">Data: <br> <span
+                                                class=" data-sensor">100</span>
+                                            <br>
+                                            Luxen
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="col">
+                                        <img id="sun-image" src="../static/Sun.png" alt="Sun" srcset="" width="150px"
+                                            style="display: block;" class="transition-image">
+                                        <img id="moon-image" src="../static/Moon.png" alt="Sun" srcset="" width="150px"
+                                            style="display: none;" class="transition-image">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+                            <h3>Variation of Luminosity</h3>
+                            <hr color="white">
+                            <div id="chart-container"></div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+                            <h3>Notifications</h3>
+                            <hr color="white">
+                            <table id="table-notifications" class="table transparent-table" style="color: white;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Messages</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+                            <h3>Data History</h3>
+                            <hr color="white">
+                            <table id="table-data-history" class="table transparent-table" style="color: white;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+                            <h3>Sections</h3>
+                            <hr color="white">
+                            <table class="table table-bordered table-transparent" style="color: white;">
+                                <thead>
+                                    <tr>
+                                        <th>Section</th>
+                                        <th>Light</th>
+                                        <th>Disable</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Section 1</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div id="progress-bar-1" class="progress-bar" style="width: 70%;">70%
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><button type="button" class="btn btn-outline-danger"><i
+                                                    id="disable-button-1" class="bi bi-power"></i> Disable</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Section 2</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div id="progress-bar-2" class="progress-bar" style="width: 50%;">50%
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><button type="button" class="btn btn-outline-danger"><i
+                                                    id="disable-button-2" class="bi bi-power"></i> Disable</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Section 3</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div id="progress-bar-3" class="progress-bar" style="width: 90%;">90%
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><button type="button" class="btn btn-outline-danger disable-button"><i
+                                                    id="disable-button-1" class="bi bi-power"></i> Disable</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

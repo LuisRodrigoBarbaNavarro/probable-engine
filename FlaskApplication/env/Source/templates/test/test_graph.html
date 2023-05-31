@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gráfica en tiempo real con Plotly</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+    <script>
+        // Datos iniciales
+        var data = [{
+            x: [],
+            y: [],
+            type: 'scatter',
+            mode: 'lines',
+            line: {
+                color: 'lime'
+            }
+        }];
+
+        // Opciones de diseño
+        var layout = {
+            plot_bgcolor: 'rgba(0, 0, 0, 0)',
+            paper_bgcolor: 'rgba(0, 0, 0, 0)',
+            font: {
+                color: 'white'
+            },
+            xaxis: {
+                title: 'Tiempo',
+                range: [0, 60]
+            },
+            yaxis: {
+                title: 'Iluminación',
+                range: [90, 200]
+            }
+        };
+
+        // Configuración de actualización
+        var updateInterval = 2000; // 2 segundos
+        var counter = 0;
+
+        // Crear gráfica inicial
+        Plotly.newPlot('chart', data, layout);
+
+        // Función para agregar datos a la gráfica
+        function addData() {
+            // Generar nuevo punto de datos
+            var newX = counter;
+            var newY = Math.random() * 110 + 90; // Valores entre 90 y 200
+
+            // Agregar datos a los arreglos existentes
+            data[0].x.push(newX);
+            data[0].y.push(newY);
+
+            // Actualizar rango del eje x
+            var dataLength = data[0].x.length;
+            layout.xaxis.range = [dataLength > 60 ? dataLength - 60 : 0, dataLength];
+
+            // Actualizar gráfica
+            Plotly.update('chart', data, layout);
+
+            // Incrementar el contador
+            counter++;
+        }
+
+        // Agregar datos cada 2 segundos
+        setInterval(addData, updateInterval);
+    </script>
+</body>
+
+</html>

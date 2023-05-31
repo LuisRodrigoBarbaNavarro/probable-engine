@@ -1,0 +1,140 @@
+body {
+    background-color: #343a40;
+    padding: 20px;
+    color: white;
+}
+
+.container {
+    background-color: #343a40;
+    padding: 20px;
+}
+
+.data-sensor {
+    font-weight: 800;
+    background-image: linear-gradient(45deg, #b772c0, #7277c0, #65b4c2);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    backdrop-filter: blur(20px);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.vertical-progress {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 200px;
+    /* Ajusta la altura según tus necesidades */
+    width: 20px;
+    /* Ajusta el ancho según tus necesidades */
+    border-radius: 30px;
+}
+
+.progress {
+    border-radius: 20px;
+    background-color: #343a40;
+}
+
+.progress-bar {
+    border-radius: 20px;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacty 0.5s ease;
+    /* Agrega una transición CSS para suavizar el cambio de opacidad */
+}
+
+#progress-bar-sensor-light {
+    width: 100%;
+    transition: height 0.5s;
+}
+
+#container-dashboard::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    z-index: -1;
+    filter: blur(160px);
+}
+
+#container-dashboard::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
+    z-index: -2;
+    filter: blur(160px);
+}
+
+/* Colores personalizados */
+.bg-danger {
+    background-color: red;
+    color: red;
+}
+
+.bg-warning {
+    background-color: orange;
+    color: orange;
+}
+
+.bg-success {
+    background-color: green;
+    color: green;
+}
+
+.container-neo {
+    background-color: #343a40;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
+        -5px -5px 10px rgba(255, 255, 255, 0.05);
+}
+
+.transparent-table {
+    background-color: transparent;
+}
+
+.cyan-blue {
+    background-color: #00cccc;
+    color: white;
+}
+
+.transition-image {
+    transition: opacity 0.5s ease;
+}
+
+.no-scrollbar {
+    overflow: auto;
+    scrollbar-width: none;
+    /* Para navegadores basados en Chromium */
+    -ms-overflow-style: none;
+    /* Para navegadores basados en Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* Para navegadores basados en Chromium */
+}

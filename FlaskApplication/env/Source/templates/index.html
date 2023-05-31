@@ -1,142 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+  <link rel="stylesheet" href="../static/style.css">
+
+  <script src="https://kit.fontawesome.com/8562bd2fa0.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.socket.io/4.1.3/socket.io.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <style>
-    @media (max-width: 576px) {
-      .mobile-padding {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-    }
+  <script src="../static/app.js"></script>
 
-    body {
-      background-color: #343a40;
-      padding: 40px;
-      color: white;
-      align-content: center;
-    }
+  <title>Test</title>
 
-    .container {
-      background-color: #343a40;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5),
-        -5px -5px 10px rgba(255, 255, 255, 0.05);
-    }
-  </style>
-  <script>
-    socket = io()
-    socket.connect('http://localhost:5000')
-
-    socket.on('connect', (data) => {
-      console.log("Connected")
-      socket.send('Hello')
-    })
-
-    socket.on('message', (data) => {
-      console.log("Sensor Data: " + data)
-      var value = parseInt(data);
-
-      if (isNaN(value)) {
-        // Reset the progress bar if the input is not a number
-        value = 0;
-      } else {
-        // Ensure the input value stays within the range of 90 to 200
-        value = Math.max(90, Math.min(value, 200));
-      }
-
-      var normalizedValue = (value - 90) / (200 - 90) * 100;
-
-      $('.progress-bar').css('width', normalizedValue + '%');
-      $('.progress-bar').css('background-color', getColorForValue(normalizedValue));
-      $('.progress-bar').attr('aria-valuenow', normalizedValue);
-
-      function getColorForValue(value) {
-        var red = Math.round(255 * (1 - value / 100));
-        var green = Math.round(255 * (value / 100));
-        var blue = 0;
-        return 'rgb(' + green + ', ' + red + ', ' + blue + ')';
-      }
-
-      socket.send('Hello')
-    })
-  </script>
 </head>
 
 <body>
-  <div class="container text-center mobile-padding">
-    <div class="row">
-      <div class="col">
-        <div class="container text-center mobile-padding">
-          <h3>Sensor Light</h1>
-            <hr color="white">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style="width: 0%; background-color: green;" aria-valuenow="0"
-                aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="row">
+    <div class="col-1">
+      <div id="container-dashboard" class="container-neo" style="height: 93vh;">
+        <div class="row">
+          <div class="col">
+            <div class="container-neo" style="height: 65vh; padding: 0; padding-left: 10px; padding-top: 10px;">
+              <div class="progress vertical-progress" style="height: 62vh;">
+                <div id="progress-bar-sensor-light" class="progress-bar bg-danger" role="progressbar" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
             </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="container-neo" style="padding: 0; padding-left: 14px; padding-top: 8px; padding-bottom: 8px;">
+              <i class="fa-solid fa-user" style="color: #ffffff;"></i>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <div class="container-neo" style="padding: 0; padding-left: 13px; padding-top: 8px; padding-bottom: 8px;">
+              <i class="fa-solid fa-gear" style="color: #ffffff;"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col">
-        <div class="container text-center mobile-padding">
-          <h3>Data</h3>
-          <hr color="white">
+    <div class="col-11">
+      <div class="container-neo" style="height: 93vh;">
+        <div class="row">
+          <div class="col-4">
+            <div class="container-neo" style="height: 41vh;">
+              <h3><span><i class="fa-solid fa-bolt" style="color: #ffffff;"></i></span> Luminous Intensity</h3>
+              <hr color="white">
+              <div class="row">
+                <div class="col">
+                  <div class="d-flex justify-content-center text-center">
+                    <h3 style="padding-top: 15%; padding-left: 20%;">Data: <br> <span class=" data-sensor">0</span>
+                      <br>
+                      Lumen
+                    </h3>
+                  </div>
+                </div>
+                <div class="col image-container">
+                  <img id="sun-image" src="../static/Sun.png" alt="Sun" srcset="" width="150px" style="display: none;"
+                    class=" image transition-image">
+                  <img id="moon-image" src="../static/Moon.png" alt="Sun" srcset="" width="150px" style="display: none;"
+                    class="image transition-image">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+              <h3><span><i class="fa-solid fa-chart-simple" style="color: #fcfcfc;"></i></span> Variation of Luminosity
+              </h3>
+              <hr color="white">
+              <div id="chart-container"></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col">
-        <div class="container text-center mobile-padding">
-          <h3>Issues</h3>
-          <hr color="white">
+        <br>
+        <div class="row">
+          <div class="col-4">
+            <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+              <h3><span><i class="fa-solid fa-bell" style="color: #ffffff;"></i></span> Notifications</h3>
+              <hr color="white">
+              <table id="table-notifications" class="table transparent-table text-center" style="color: white;">
+                <thead>
+                  <tr>
+                    <th scope="col">Messages</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+              <h3><span><i class="fa-solid fa-clock" style="color: #ffffff;"></i></span> Data History</h3>
+              <hr color="white">
+              <table id="table-data-history" class="table transparent-table text-center" style="color: white;">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="container-neo overflow-auto no-scrollbar" style="height: 41vh;">
+              <h3><span><i class="fa-solid fa-chart-area" style="color: #ffffff;"></i></span> Sections</h3>
+              <hr color="white">
+              <table class="table transparent-table text-center" style="color: white;">
+                <thead>
+                  <tr>
+                    <th style="width: 35%;">Section</th>
+                    <th>Light</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Section 1</td>
+                    <td>
+                      <div class="progress">
+                        <div id="progress-bar-1" class="progress-bar" style="width: 70%; background-color: #614096;">
+                          70%
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Section 2</td>
+                    <td>
+                      <div class="progress">
+                        <div id="progress-bar-2" class="progress-bar" style="width: 50%; background-color: #434096;">50%
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Section 3</td>
+                    <td>
+                      <div class="progress">
+                        <div id="progress-bar-3" class="progress-bar" style="width: 90%; background-color: #407496;">90%
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <br>
-    <div class="row">
-      <div class="col">
-        <div class="container text-center mobile-padding">
-          <h3>Realtime Chart</h3>
-          <hr color="white">
-          <div id="chart"></div>
-          <script>
-            function getData() {
-              return Math.random();
-            }
-
-            Plotly.plot('chart', [{
-              y: [getData()],
-              type: 'line'
-            }]);
-
-            var cnt = 0;
-
-            setInterval(function () {
-
-              Plotly.extendTraces('chart', { y: [[getData()]] }, [0]);
-              cnt++;
-              if (cnt > 500) {
-                Plotly.relayout('chart', {
-                  xaxis: {
-                    range: [cnt - 500, cnt]
-                  }
-                });
-              }
-            }, 15);
-          </script>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

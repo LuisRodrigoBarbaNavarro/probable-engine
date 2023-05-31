@@ -27,8 +27,11 @@ def test(msg):
 
 @socket.on('message')
 def message(msg):
+    PHONE_IP = '192.168.43.22'
+    HOME_IP = '192.168.0.27'
+
     s = sc.socket(sc.AF_INET, sc.SOCK_STREAM)
-    s.bind(('192.168.43.22', 8585))
+    s.bind((HOME_IP, 8585))
     s.listen(0)
     
     while True:

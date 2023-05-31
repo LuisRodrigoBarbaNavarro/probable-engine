@@ -2,7 +2,14 @@
 
 Este repositorio contiene una aplicación web desarrollada en Flask, diseñada para el control de luminiscencia en invernaderos. La aplicación es capaz de recibir datos en tiempo real mediante un fotoresistor y utilizarlos para regular la iluminación en función de las necesidades de las plantas. 🌱
 
-[Imgur](https://i.imgur.com/PNguLgR.png)
+<style>
+    .rounded-image {
+        border-radius: 10px;
+    }
+</style>
+
+<img src="[ruta_de_la_imagen.jpg](https://i.imgur.com/PNguLgR.png)" alt="Descripción de la imagen" class="rounded-image">
+
 
 ### 🚀 - Características principales 
 - 🐍 - Implementada en Flask, un framework de desarrollo web en Python, que proporciona un entorno ágil y eficiente. 

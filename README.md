@@ -1,9 +1,7 @@
 # 🌿- Control de Luminiscencia en Invernadero
 
 Este repositorio contiene una aplicación web desarrollada en Flask, diseñada para el control de luminiscencia en invernaderos. La aplicación es capaz de recibir datos en tiempo real mediante un fotoresistor y utilizarlos para regular la iluminación en función de las necesidades de las plantas. 🌱
-
 ![Photo](https://i.imgur.com/PNguLgR.png)
-
 ### 🚀 - Características principales 
 - 🐍 - Implementada en Flask, un framework de desarrollo web en Python, que proporciona un entorno ágil y eficiente. 
 - 🌞 - Recopila datos en tiempo real provenientes de sensores ubicados en el invernadero, como la intensidad lumínica para ver en qué secciones del invernadero, en función de la etapa de día, se necesita aplicar luz artificial. 
